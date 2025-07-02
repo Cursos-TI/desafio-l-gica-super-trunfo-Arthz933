@@ -60,7 +60,7 @@ int main()
     // superpoder declarado após densidade e pibpercapita, pois é a soma de todos os dados
 
     printf("\nRESULTADO carta 1:\n"); // print dos dados da carta 1
-    printf("código da carta: %s\n", codigo1);
+    printf("Código: %s\n", codigo1);
     printf("População: %lu\n", populacao1);
     printf("Número de pontos turísticos: %d\n", npontosturisticos1);
     printf("Área: %.2f km²\n", area1);
@@ -71,7 +71,7 @@ int main()
 
     printf("-----CADASTRO DA CARTA 2-----\n");
 
-    printf("Código da cidade: \n");
+    printf("Código: \n");
     scanf("%s", codigo2);
 
     printf("População: \n");
@@ -115,16 +115,16 @@ int main()
     printf("Densidade populacional: %.2f hab/km²\n", densidadepopulacional2);
     printf("\n");
 
-    printf("-----------------------------------\n");
-    printf("comparação dos atributos e super poder \n");
+    printf("-------------------------\n");
+    printf("COMPARAÇÃO DOS ATRIBUTOS\n");
     printf("selecione um atributo para ser comparado: \n");
     // switchs não aceitam ponteiros e strings
     /* em C não existe o tipo string, o C considera uma string como um array de "chars"
     ex: "g" (é um char)  "gato" = ['g', 'a', 't', 'o', '\0'], o \0 serve para as funções entenderem onde
     a palavra acaba*/
-    printf("1 - população  2- pib  3 - área  4 - densidade populacional\n");
-    printf("5 - pib per capita  6 - número de pontos truísticos\n");
-    scanf("%d", atributoescolhido);
+    printf("1 - população  2- pib  3 - área  4 - número de pontos truísticos\n");
+    printf("5 - pib per capita  6 - densidade populacional  7 - superpoder\n");
+    scanf("%d", &atributoescolhido);
 
     switch (atributoescolhido) // a variável não pode ser char[] e ir dentro do switch
     {
@@ -135,118 +135,153 @@ int main()
             printf("população:\n");
             printf("1 - carta 1 vence: %lu\n", populacao1);
             printf("----------\n");
-        
-        if (populacao2 > populacao1 && populacao1 + populacao2 > 50000)
+
+            if (populacao2 > populacao1 && populacao1 + populacao2 > 50000)
+            {
+                printf("----------\n");
+                printf("população:\n");
+                printf("0 - carta 2 vence: %lu\n", populacao2);
+                printf("----------\n");
+            }
+        }
+        else
         {
-            printf("----------\n");
-            printf("população:\n");
-            printf("0 - carta 2 vence: %lu\n", populacao2);
-            printf("----------\n");
-        } 
-    }
-        else {
             printf("não foi possível a comparação, revise os dados entregues\n");
         }
 
         break;
 
     case 2:
-        if (pib1 > pib2)
+        if (pib1 > pib2 && pib1 + pib2 >= 70000000)
         {
             printf("----------\n");
             printf("pib:\n");
             printf("1 - carta 1 vence: %.2f\n", pib1);
             printf("----------\n");
-        
-        if (pib2 > pib1) 
+
+            if (pib2 > pib1 && pib1 + pib2 >= 70000000)
+            {
+                printf("----------\n");
+                printf("pib:\n");
+                printf("0 - carta 2 vence: %.2f\n", pib2);
+                printf("----------\n");
+            }
+        }
+        else
         {
-            printf("----------\n");
-            printf("pib:\n");
-            printf("0 - carta 2 vence: %.2f\n", pib2);
-            printf("----------\n");
-        } 
-     } else {
             printf("não foi possível a comparação, revise os dados entregues\n");
         }
         break;
 
-        case 3: 
-         if(area1 > area2 && area1 + area2 >= 5000) {
-        printf("----------\n");
-        printf("área:\n");
-        printf("1 - carta 1 vence: %.2f\n", area1);
-        printf("----------\n");
+    case 3:
+        if (area1 > area2 && area1 + area2 >= 5000)
+        {
+            printf("----------\n");
+            printf("área:\n");
+            printf("1 - carta 1 vence: %.2f\n", area1);
+            printf("----------\n");
 
-     if(area2 > area1 && area1 + area2 >= 5000) {
-        printf("----------\n");
-        printf("área:\n");
-        printf("0- carta 2 vence: %.2f\n", area2);
-        printf("----------\n");
-
-    } 
-    } else {
-    printf("não foi possível a comparação, revise os dados entregues\n");
-
-    }
+            if (area2 > area1 && area1 + area2 >= 5000)
+            {
+                printf("----------\n");
+                printf("área:\n");
+                printf("0- carta 2 vence: %.2f\n", area2);
+                printf("----------\n");
+            }
+        }
+        else
+        {
+            printf("não foi possível a comparação, revise os dados entregues\n");
+        }
         break;
 
-    default:
-        printf("atributo inválido, tente novamente\n");
-    }
+    case 4:
+        if (npontosturisticos1 > npontosturisticos2 && npontosturisticos1 + npontosturisticos2 >= 10)
+        {
+            printf("----------\n");
+            printf("pontos turísticos:\n");
+            printf("1 - carta 1 vence: %d\n", npontosturisticos1);
+            printf("----------\n");
 
-    /*
+            if (npontosturisticos2 > npontosturisticos1 && npontosturisticos1 + npontosturisticos2 >= 10)
+            {
+                printf("----------\n");
+                printf("pontos turísticos:\n");
+                printf("0 - carta 2 vence: %d\n", npontosturisticos2);
+                printf("----------\n");
+            }
+        }
+        else
+        {
+            printf("não foi possível a comparação, revise os dados entregues\n");
+        }
+        break;
 
-    
-    if(npontosturisticos1 > npontosturisticos2) {
-        printf("----------\n");
-        printf("pontos turísticos:\n");
-        printf("1 - carta 1 vence: %d\n", npontosturisticos1);
-        printf("----------\n");
+    case 5:
 
-    } else {
-        printf("----------\n");
-        printf("pontos turísticos:\n");
-        printf("0 - carta 2 vence: %d\n", npontosturisticos2);
-        printf("----------\n");
+        if (pibpercapita1 > pibpercapita2 && pibpercapita1 + pibpercapita2 > 400)
+        {
+            printf("----------\n");
+            printf("pib per capita:\n");
+            printf("1 - carta 1 vence: %.2f\n", pibpercapita1);
+            printf("----------\n");
 
-    }
-    if(pibpercapita1 > pibpercapita2) {
-        printf("----------\n");
-        printf("pib per capita:\n");
-        printf("1 - carta 1 vence: %.2f\n", pibpercapita1);
-        printf("----------\n");
+            if (pibpercapita2 > pibpercapita1 && pibpercapita1 + pibpercapita2 > 400)
+            {
+                printf("----------\n");
+                printf("pib per capita:\n");
+                printf("0 - carta 2 vence: %.2f\n", pibpercapita2);
+                printf("----------\n");
+            }
+            else
+            {
+                printf("não foi possível a comparação, revise os dados entregues\n");
+            }
+        }
+        break;
 
-    } else {
-        printf("----------\n");
-        printf("pib per capita:\n");
-        printf("0 - carta 2 vence: %.2f\n", pibpercapita2);
-        printf("----------\n");
-
-    }
-    if(densidadepopulacional1 < densidadepopulacional2) {
+        case 6:
+          if(densidadepopulacional1 < densidadepopulacional2) {
         printf("----------\n");
         printf("densidade populacional:\n");
         printf("1 - carta 1 vence: %.2f\n", densidadepopulacional1);
         printf("----------\n");
 
-    } else {
+     if(densidadepopulacional2 < densidadepopulacional1) {
         printf("----------\n");
         printf("densidade populacional:\n");
         printf("0- carta 2 vence: %.2f\n", densidadepopulacional2);
         printf("----------\n");
 
     }
-    if(superpoder1 > superpoder2) {
+}   else {
+        printf("não foi possível a comparação, revise os dados entregues\n");
+
+   } 
+        break;
+
+    case 7:
+        if(superpoder1 > superpoder2) {
         printf("----------\n");
         printf("super poder:\n");
         printf("1 - carta 1 vence: %lu\n", superpoder1);
         printf("----------\n");
 
-    } else {
+      if(superpoder2 > superpoder1) {
         printf("----------\n");
         printf("super poder:\n");
         printf("0- carta 2 vence: %lu\n", superpoder2);
         printf("----------\n");
-    }*/
+     }
+    } else {
+        printf("não foi possível a comparação, revise os dados entregues\n");
+
+    }
+    break;
+
+    default:
+        printf("atributo inválido, tente novamente\n");
+    }
+
     return 0;
 }
