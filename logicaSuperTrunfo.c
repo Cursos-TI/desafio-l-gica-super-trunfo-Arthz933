@@ -5,7 +5,7 @@ int main()
     char codigo1[10];
     // ao colocar entre chaves o tamanho do char não coloque & em scanf, pois as chaves já serão um ponteiro
     float area1, densidadepopulacional1, pibpercapita1, pib1;
-    int npontosturisticos1, atributoescolhido;
+    int npontosturisticos1, atributoescolhido1, atributoescolhido2;
     unsigned long int populacao1, superpoder1;
 
     char codigo2[10];
@@ -38,23 +38,9 @@ int main()
     printf("PIB: \n");
     scanf(" %f", &pib1);
 
-    if (area1 != 0)
-    {
-        densidadepopulacional1 = populacao1 / area1;
-    }
-    else
-    {
-        densidadepopulacional1 = 0; // Evita divisão por zero
-    }
-
-    if (populacao1 != 0)
-    {
-        pibpercapita1 = pib1 / populacao1;
-    }
-    else
-    {
-        pibpercapita1 = 0; // Evita divisão por zero
-    }
+    densidadepopulacional1 = (area1 != 0) ? (populacao1 / area1) : 0; // evita divisão por zero
+    
+    pibpercapita1 = (populacao1 != 0) ? (pib1 / populacao1) : 0;
 
     superpoder1 = area1 + densidadepopulacional1 + pibpercapita1 + pib1 + npontosturisticos1 + populacao1;
     // superpoder declarado após densidade e pibpercapita, pois é a soma de todos os dados
@@ -86,23 +72,10 @@ int main()
     printf("PIB: \n");
     scanf(" %f", &pib2);
 
-    if (area2 != 0)
-    {
-        densidadepopulacional2 = populacao2 / area2;
-    }
-    else
-    {
-        densidadepopulacional2 = 0; // Evita divisão por zero
-    }
-
-    if (populacao2 != 0)
-    {
-        pibpercapita2 = pib2 / populacao2;
-    }
-    else
-    {
-        pibpercapita1 = 2; // Evita divisão por zero
-    }
+    densidadepopulacional2 = (area2 != 0) ? (populacao2 / area2) : 0; // evita divisão por zero
+    
+    pibpercapita2 = (populacao2 != 0) ? (pib2 / populacao2) : 0;
+    
 
     superpoder2 = area2 + densidadepopulacional2 + pibpercapita2 + pib2 + npontosturisticos2 + populacao2;
 
@@ -117,84 +90,46 @@ int main()
 
     printf("-------------------------\n");
     printf("COMPARAÇÃO DOS ATRIBUTOS\n");
-    printf("selecione um atributo para ser comparado: \n");
+    printf("selecione dois atributos para serem comparados: \n");
     // switchs não aceitam ponteiros e strings
     /* em C não existe o tipo string, o C considera uma string como um array de "chars"
     ex: "g" (é um char)  "gato" = ['g', 'a', 't', 'o', '\0'], o \0 serve para as funções entenderem onde
     a palavra acaba*/
     printf("1 - população  2- pib  3 - área  4 - número de pontos truísticos\n");
     printf("5 - pib per capita  6 - densidade populacional  7 - superpoder\n");
-    scanf("%d", &atributoescolhido);
-
-    switch (atributoescolhido) // a variável não pode ser char[] e ir dentro do switch
+    scanf("%d\n", &atributoescolhido1);
+    scanf("%d\n",atributoescolhido2);
+    /* switch (atributoescolhido) // a variável não pode ser char[] e ir dentro do switch
     {
-    case 1:
-        if (populacao1 > populacao2 && populacao1 + populacao2 > 50000)
-        { // início das comparações, todas com if e else
-            printf("----------\n");
-            printf("população:\n");
-            printf("1 - carta 1 vence: %lu\n", populacao1);
-            printf("----------\n");
-
-            if (populacao2 > populacao1 && populacao1 + populacao2 > 50000)
-            {
-                printf("----------\n");
-                printf("população:\n");
-                printf("0 - carta 2 vence: %lu\n", populacao2);
-                printf("----------\n");
-            }
-        }
-        else
-        {
-            printf("não foi possível a comparação, revise os dados entregues\n");
-        }
-
+    case 1:  // início das comparações, todas com if e else
+        (populacao1 > populacao2 && populacao1 + populacao2 > 50000) ?
+            printf("1 - carta 1 vence: %lu\n", populacao1) :
+            (populacao2 > populacao1 && populacao1 + populacao2 > 50000) ?
+             printf("0 - carta 2 vence: %lu\n", populacao2) :
+             printf("empate\n");
+        
+    
         break;
 
     case 2:
-        if (pib1 > pib2 && pib1 + pib2 >= 70000000)
-        {
-            printf("----------\n");
-            printf("pib:\n");
-            printf("1 - carta 1 vence: %.2f\n", pib1);
-            printf("----------\n");
+        (pib1 > pib2 && pib1 + pib2 > 700000) ?
+            printf("1 - carta 1 vence: %.2f\n", pib1) :
 
-            if (pib2 > pib1 && pib1 + pib2 >= 70000000)
-            {
-                printf("----------\n");
-                printf("pib:\n");
-                printf("0 - carta 2 vence: %.2f\n", pib2);
-                printf("----------\n");
-            }
-        }
-        else
-        {
-            printf("não foi possível a comparação, revise os dados entregues\n");
-        }
+           (pib1 > pib2 && pib1 + pib2 > 700000) ?
+            printf("0 - carta 2 vence: %.2f\n", pib2) :
+            printf("empate\n");
+        
         break;
 
     case 3:
-        if (area1 > area2 && area1 + area2 >= 5000)
-        {
-            printf("----------\n");
-            printf("área:\n");
-            printf("1 - carta 1 vence: %.2f\n", area1);
-            printf("----------\n");
+        (area1 > area2 && area1 + area2 > 200) ?
+            printf("1 - carta 1 vence: %.2f\n", area1) :
 
-            if (area2 > area1 && area1 + area2 >= 5000)
-            {
-                printf("----------\n");
-                printf("área:\n");
-                printf("0- carta 2 vence: %.2f\n", area2);
-                printf("----------\n");
-            }
-        }
-        else
-        {
-            printf("não foi possível a comparação, revise os dados entregues\n");
-        }
+           (area1 > area2 && area1 + area2 > 200) ?
+            printf("0 - carta 2 vence: %.2f\n", area2) :
+            printf("empate\n");
+        
         break;
-
     case 4:
         if (npontosturisticos1 > npontosturisticos2 && npontosturisticos1 + npontosturisticos2 >= 10)
         {
@@ -283,5 +218,7 @@ int main()
         printf("atributo inválido, tente novamente\n");
     }
 
+    return 0; */
+
     return 0;
-}
+} 
